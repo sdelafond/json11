@@ -1,0 +1,48 @@
+Source: json11
+Section: libs
+Priority: optional
+Maintainer: Freexian Packaging Team <team+freexian@tracker.debian.org>
+Uploaders: Sebastien Delafond <seb@debian.org>
+Build-Depends: debhelper (>= 11), cmake
+Standards-Version: 4.4.1
+Homepage: https://github.com/centreon/json11
+Vcs-Browser: https://salsa.debian.org/centreon-team/json11
+Vcs-Git: https://salsa.debian.org/centreon-team/json11.git
+
+Package: libjson11-1
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Tiny JSON library for C++11
+ json11 is a tiny JSON library for C++11, providing JSON parsing and
+ serialization.
+ .
+ The core object provided by the library is json11::Json. A Json object
+ represents any JSON value: null, bool, number (int or double), string
+ (std::string), array (std::vector), or object (std::map).
+ .
+ Json objects act like values. They can be assigned, copied, moved,
+ compared for equality or order, and so on. There are also helper methods
+ Json::dump, to serialize a Json to a string, and Json::parse (static) to
+ parse a std::string as a Json object.
+
+Package: libjson11-1-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libjson11-1 (= ${binary:Version}), ${misc:Depends}
+Description: Tiny JSON library for C++11 (development files)
+ json11 is a tiny JSON library for C++11, providing JSON parsing and
+ serialization.
+ .
+ The core object provided by the library is json11::Json. A Json object
+ represents any JSON value: null, bool, number (int or double), string
+ (std::string), array (std::vector), or object (std::map).
+ .
+ Json objects act like values. They can be assigned, copied, moved,
+ compared for equality or order, and so on. There are also helper methods
+ Json::dump, to serialize a Json to a string, and Json::parse (static) to
+ parse a std::string as a Json object.
+ .
+ This package provides all required developer resources like header-files
+ and statically linked version of the library.

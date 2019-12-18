@@ -1,0 +1,6 @@
+json11 (1.0.0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #946936)
+
+ -- Sebastien Delafond <seb@debian.org>  Wed, 18 Dec 2019 09:51:08 +0100
+
