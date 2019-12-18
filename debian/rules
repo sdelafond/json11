@@ -6,20 +6,9 @@ export DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/buildflags.mk
-CFLAGS+=$(CPPFLAGS)
-CXXFLAGS+=$(CPPFLAGS)
-
-export CMAKE_OPTIONS := \
-  -DCMAKE_CXX_FLAGS="$(CXXFLAGS)" \
-  -DCMAKE_SHARED_LINKER_FLAGS_RELEASE="$(LDFLAGS)"
-  -DWITH_SHARED_LIB=1 \
-  -DWITH_STATIC_LIB=1 \
-  -DBUILD_SHARED_LIBS=ON \
-  -DBUILD_STATIC_LIBS=ON \
-  -DWITH_PKGCONFIG_DIR=/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig
 
 %:
-	dh $@ $(CMAKE_OPTIONS) --buildsystem=cmake --sourcedirectory=.
+	dh $@ --buildsystem=cmake --sourcedirectory=.
 
 override_dh_auto_configure:
-	dh_auto_configure --buildsystem=cmake --sourcedirectory=. -- $(CMAKE_OPTIONS)
+	dh_auto_configure --buildsystem=cmake --sourcedirectory=.
