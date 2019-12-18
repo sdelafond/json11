@@ -1,3 +1,10 @@
+json11 (1.0.0-2) unstable; urgency=medium
+
+  * Export cmake config patch
+  * Simplify debian/rules
+
+ -- Sebastien Delafond <seb@debian.org>  Wed, 18 Dec 2019 12:27:21 +0100
+
 json11 (1.0.0-1) unstable; urgency=medium
 
   * Initial release (Closes: #946936)
