@@ -1,0 +1,34 @@
+From: =?utf-8?q?S=C3=A9bastien_Delafond?= <sdelafond@gmail.com>
+Date: Wed, 18 Dec 2019 12:18:40 +0100
+Subject: Export cmake config
+
+---
+ CMakeLists.txt | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 182728b..b78ccef 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -27,8 +27,8 @@ set_target_properties(json11_static PROPERTIES OUTPUT_NAME json11)
+ add_library(json11 SHARED json11.cpp)
+ set_target_properties(json11 PROPERTIES VERSION 1.0.0 SOVERSION 1)
+ 
+-target_include_directories(json11_static PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+-target_include_directories(json11 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
++target_include_directories(json11_static PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
++target_include_directories(json11 PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+ target_compile_options(json11_static
+   PRIVATE -fPIC -fno-rtti -fno-exceptions -Wall)
+ target_compile_options(json11
+@@ -61,7 +61,8 @@ if (JSON11_BUILD_TESTS)
+   target_link_libraries(json11_test json11)
+ endif()
+ 
+-install(TARGETS json11_static DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE})
+-install(TARGETS json11 DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE})
++install(TARGETS json11_static EXPORT json11_export DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE})
++install(TARGETS json11 EXPORT json11_export DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE})
+ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/json11.hpp" DESTINATION include/${CMAKE_LIBRARY_ARCHITECTURE})
+ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/json11.pc" DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/pkgconfig)
++install(EXPORT json11_export DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/json11 FILE json11Config.cmake)
